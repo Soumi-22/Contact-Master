@@ -1,0 +1,16 @@
+<!-- templates/contacts/confirm_delete.html -->
+{% extends 'contacts/base.html' %}
+
+{% block title %}
+Confirm Delete
+{% endblock %}
+
+{% block content %}
+<h1 style="font-size: x-large;">Are you sure you want to delete {{ contact.name }}?</h1>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Yes, delete</button>
+  <a href="{% url 'list_contacts' %}" class="btn btn-secondary">Cancel</a>
+
+</form>
+{% endblock %}

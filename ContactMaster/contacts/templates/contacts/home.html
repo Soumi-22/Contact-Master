@@ -1,0 +1,18 @@
+<!-- templates/contacts/home.html -->
+
+{% extends 'contacts/base.html' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+  <h1 class="display-4" style="font-family: 'Arial', Bodoni MT Black;">Welcome to ContactMaster</h1>
+  <p class="lead">Manage your contacts easily.</p>
+  <hr class="my-4" />
+  <a class="btn btn-primary btn-lg" href="{% url 'add_contact' %}" role="button">Add Contact</a>
+  <a class="btn btn-secondary btn-lg" href="{% url 'list_contacts' %}" role="button">List Contacts</a>
+</div>
+{% endblock %}
+

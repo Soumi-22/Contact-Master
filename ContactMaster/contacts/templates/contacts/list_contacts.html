@@ -1,0 +1,61 @@
+{% extends 'contacts/base.html' %} {% block title %}List Contacts{% endblock %}
+{% block content %}
+<h1>Contacts</h1>
+<form method="get" action="{% url 'search_contacts' %}" class="mb-4">
+  <div class="input-group">
+    <input
+      type="text"
+      name="query"
+      class="form-control"
+      placeholder="Search by name"
+    />
+    <button type="submit" class="btn btn-primary">Search</button>
+  </div>
+</form>
+
+{% if contacts %}
+<ul class="list-group">
+  {% for contact in contacts %}
+  <li
+    class="list-group-item d-flex justify-content-between align-items-center flex-wrap"
+  >
+    <div>
+      <h5 class="mb-1">{{ contact.name }}</h5>
+      <p class="mb-1">{{ contact.phone }} | {{ contact.email }}</p>
+    </div>
+    <div class="btn-group mt-2 mt-md-0">
+      <a href="{% url 'delete_contact' contact.id %}" class="btn btn-danger"
+        >Delete</a
+      >
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+
+{% else %}
+<div class="alert alert-danger" role="alert">
+    Sorry! No contacts found.
+</div>
+{% endif %}
+
+<a href="{% url 'home' %}" class="btn btn-secondary mt-4">Back to Home</a>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const deleteButtons = document.querySelectorAll('.delete-btn');
+
+    deleteButtons.forEach(function(button) {
+      button.addEventListener('click', function(event) {
+        event.preventDefault();
+        const userConfirmed = confirm('Are you sure you want to delete this contact?');
+
+        if (userConfirmed) {
+          window.location.href = this.href;
+        }
+      });
+    });
+  });
+</script>
+
+
+{% endblock %}

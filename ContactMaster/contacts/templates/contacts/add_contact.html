@@ -1,0 +1,16 @@
+<!-- templates/contacts/add_contact.html -->
+
+{% extends 'contacts/base.html' %}
+
+{% block title %}Add Contact{% endblock %}
+
+{% block content %}
+<h1>Add Contact</h1>
+<form method="post" class="mt-4">
+  {% csrf_token %}
+  <div class="mb-3">{{ form.as_p }}</div>
+  <button type="submit" class="btn btn-success">Add</button>
+  <a href="{% url 'home' %}" class="btn btn-secondary">Back to Home</a>
+</form>
+{% endblock %}
+
